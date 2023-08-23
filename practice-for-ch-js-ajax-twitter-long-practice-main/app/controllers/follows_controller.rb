@@ -13,9 +13,10 @@ class FollowsController < ApplicationController
       # Otherwise, some browsers will keep the method of the redirect as
       # `POST`.
       # See https://api.rubyonrails.org/classes/ActionController/Redirecting.html#method-i-redirect_to
+                format.json { render json: current_user.slice(:id, :username) }
+
       format.html { redirect_to request.referrer, status: :see_other }
 
-          format.json { render json: current_user.slice(:id, :username) }
     end
   end
 
@@ -31,9 +32,10 @@ class FollowsController < ApplicationController
       # Otherwise, some browsers will keep the method of the redirect as
       # `DELETE`.
       # See https://api.rubyonrails.org/classes/ActionController/Redirecting.html#method-i-redirect_to
+       format.json { render json: current_user.slice(:id) }
       format.html { redirect_to request.referrer, status: :see_other }
 
- format.json { render json: current_user.slice(:id) }
+
     end
   end
 end
