@@ -8,7 +8,16 @@ async function customFetch(url, options = {}) {
     "X-CSRF-Token": csrfToken,
   };
 
-  return await fetch(url, options);
+  try {
+    const response = await fetch(url, options);
+    if (response.ok) {
+      return response;
+    } else {
+      throw response;
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function followUser(userId) {
